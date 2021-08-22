@@ -65,7 +65,7 @@ def PREouIDE(palavra, linha):
     else:
         output(linha,"IDE",buffer)
 
-# Máquina de Estados Finitas
+########################################## Máquina de Estados Finitas ###########################################
 def maqEstados(caractere,entrada, linha):
     global buffer, estado
     
@@ -111,14 +111,32 @@ def maqEstados(caractere,entrada, linha):
         estadoQ22(caractere, entrada)  
     elif(estado == "Q23"):
         estadoQ23()  
+    elif(estado == "Q27"):
+        estadoQ27(caractere, entrada, linha)   
+    elif(estado == "Q28"):
+        estadoQ28(caractere, entrada, linha)   
+    elif(estado == "Q29"):
+        estadoQ29(caractere, entrada, linha)   
+    elif(estado == "Q30"):
+        estadoQ30(linha)  
     elif(estado == "Q32"):
         estadoQ32(caractere, entrada, linha)
     elif(estado == "Q33"):
         estadoQ33(linha)
+    elif(estado == "Q34"):
+        estadoQ34(caractere, entrada, linha)   
+    elif(estado == "Q35"):
+        estadoQ35(caractere, entrada, linha)   
+    elif(estado == "Q36"):
+        estadoQ36(caractere, entrada, linha)   
+    elif(estado == "Q37"):
+        estadoQ37(caractere, entrada, linha)   
+    elif(estado == "Q38"):
+        estadoQ38(linha)  
     else:
         print("Bugou o estado")
 
-#---------------------- Estados-----------------------------------------
+############################################### Estados ######################################################
 def estadoQ0(caractere,entrada, linha):
     global buffer, estado, space
     buffer=buffer+entrada
@@ -157,9 +175,15 @@ def estadoQ0(caractere,entrada, linha):
     elif(caractere == 123):
         print("DEL {")
         estado = "Q20" 
+    elif(caractere == 34):
+        print("Cadeia de caractere")
+        estado = "Q27" 
     elif(caractere == 33):
         print ("LOG !")
         estado = "Q32"
+    elif(caractere == 39):
+        print ("CAR INIT")
+        estado = "Q34"    
     else:
         if(caractere != 10 and caractere != 194 and caractere != 195 and caractere != 32 and caractere != 3):
             print (caractere)
@@ -352,6 +376,60 @@ def estadoQ23():
     estado = "Q0"
     buffer=""
 
+def estadoQ27(caractere, entrada, linha):
+    global buffer, estado
+    if(caractere == 34):
+        buffer=buffer+entrada
+        estado = "Q30"
+    elif(caractere == 92):
+        buffer=buffer+entrada
+        estado = "Q28"
+    elif(caractere >=65 and caractere <= 90 or caractere >=97 and caractere <= 122 or caractere == 36 or caractere == 126 or caractere == 58 or caractere == 63 or caractere == 64 or caractere >=94 and caractere <= 96 or caractere >=48 and caractere <= 57):
+        buffer=buffer+entrada
+        estado = "Q27"
+    else:
+        estado = "Q0"
+        output(linha,"CMF",buffer)
+        buffer=""
+
+def estadoQ28(caractere, entrada, linha):
+    global buffer, estado
+    if(caractere == 34):
+        buffer=buffer+entrada
+        estado = "Q29"
+    elif(caractere == 92):
+        buffer=buffer+entrada
+        estado = "Q28"
+    elif(caractere >=65 and caractere <= 90 or caractere >=97 and caractere <= 122 or caractere == 36 or caractere == 126 or caractere == 58 or caractere == 63 or caractere == 64 or caractere >=94 and caractere <= 96 or caractere >=48 and caractere <= 57):
+        buffer=buffer+entrada
+        estado = "Q27"
+    else:
+        estado = "Q0"
+        output(linha,"CMF",buffer)
+        buffer=""
+
+def estadoQ29(caractere, entrada, linha):
+    global buffer, estado
+    if(caractere == 34):
+        buffer=buffer+entrada
+        estado = "Q30"
+    elif(caractere == 92):
+        buffer=buffer+entrada
+        estado = "Q28"
+    elif(caractere >=65 and caractere <= 90 or caractere >=97 and caractere <= 122 or caractere == 36 or caractere == 126 or caractere == 58 or caractere == 63 or caractere == 64 or caractere >=94 and caractere <= 96 or caractere >=48 and caractere <= 57):
+        buffer=buffer+entrada
+        estado = "Q27"
+    else:
+        estado = "Q0"
+        output(linha,"CMF",buffer)
+        buffer=""
+
+def estadoQ30(linha):
+    global buffer, estado
+    output(linha,"CAD",buffer)
+    estado = "Q0"
+    buffer=""
+
 def estadoQ32(caractere, entrada, linha):
     global buffer, estado
     if(caractere == 61):
@@ -369,7 +447,56 @@ def estadoQ33(linha):
     output(linha, "SII", buffer)
     buffer=""
 
-#------------------------------------------------------------------------
+def estadoQ34(caractere, entrada, linha):
+    global buffer, estado
+    if(caractere == 92):
+        buffer=buffer+entrada
+        estado = "Q36"
+    elif(caractere >=65 and caractere <= 90 or caractere >=97 and caractere <= 122 or caractere == 36 or caractere == 126 or caractere == 58 or caractere == 63 or caractere == 64 or caractere >=94 and caractere <= 96 or caractere >=48 and caractere <= 57):
+        buffer=buffer+entrada
+        estado = "Q35"
+    else:
+        estado = "Q0"
+        output(linha,"CaMF",buffer)
+        buffer=""
+
+def estadoQ35(caractere, entrada, linha):
+    global buffer, estado
+    if(caractere == 39):
+        buffer=buffer+entrada
+        estado = "Q38"
+    else:
+        estado = "Q0"
+        output(linha,"CaMF",buffer)
+        buffer=""
+
+def estadoQ36(caractere, entrada, linha):
+    global buffer, estado
+    if(caractere == 39):
+        buffer=buffer+entrada
+        estado = "Q37"
+    else:
+        estado = "Q0"
+        output(linha,"CaMF",buffer)
+        buffer=""
+
+def estadoQ37(caractere, entrada, linha):
+    global buffer, estado
+    if(caractere == 39):
+        buffer=buffer+entrada
+        estado = "Q38"
+    else:
+        estado = "Q0"
+        output(linha,"CaMF",buffer)
+        buffer=""
+
+def estadoQ38(linha):
+    global buffer, estado
+    output(linha,"CAR",buffer)
+    estado = "Q0"
+    buffer=""
+
+###############################################################################################################
 
 #Verifica se a existe a pasta input
 flag = True
@@ -382,7 +509,7 @@ if(flag):
 	
 
 
-#### MAIN #####
+################################################# MAIN #######################################################
 entrada = input()
 while 1:
     linha = entrada.readline()	
