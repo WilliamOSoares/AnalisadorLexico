@@ -75,6 +75,12 @@ def maqEstados(caractere,entrada, linha):
         estadoQ1(caractere, entrada, linha)
     elif(estado == "Q2"):
         estadoQ2(linha)
+    elif(estado == "Q3"):
+        estadoQ3(caractere, entrada, linha)
+    elif(estado == "Q4"):
+        estadoQ4(caractere, entrada, linha)
+    elif(estado == "Q5"):
+        estadoQ5(caractere, entrada, linha)
     elif(estado == "Q6"):
         estadoQ6(linha)
     elif(estado == "Q7"):
@@ -132,7 +138,7 @@ def maqEstados(caractere,entrada, linha):
     elif(estado == "Q37"):
         estadoQ37(caractere, entrada, linha)   
     elif(estado == "Q38"):
-        estadoQ38(linha)  
+        estadoQ38(linha)
     else:
         print("Bugou o estado")
 
@@ -145,6 +151,9 @@ def estadoQ0(caractere,entrada, linha):
         estado = "Q1" 
     elif(caractere == 44 or caractere == 40 or caractere == 41 or caractere == 46 or caractere == 59 or caractere == 91 or caractere == 93 or caractere == 125):
         estado = "Q2"
+    elif(caractere >= 48 and caractere <= 57):
+        print("NRO")
+        estado = "Q3"
     elif(caractere == 36 or caractere == 92 or caractere == 126 or caractere == 58 or caractere == 63 or caractere == 64 or caractere >=94 and caractere <= 96):
         print("SIB")
         estado = "Q6"
@@ -211,6 +220,41 @@ def estadoQ2(linha):
     output(linha, "DEL", buffer)
     buffer=""
 
+def estadoQ3(caractere, entrada, linha):
+    global buffer, estado
+    if(caractere >= 48 and caractere <= 57):
+        print("NRO" + buffer)
+        buffer = buffer + entrada
+        estado = "Q3"
+    elif(caractere == 46):
+        print("Float" + buffer)
+        buffer = buffer + entrada
+        estado = "Q4"
+    else:
+        estado = "Q0"
+        output(linha, "NRO", buffer)
+        buffer="" 
+
+def estadoQ4(caractere, entrada, linha):
+    global buffer, estado
+    if(caractere >= 48 and caractere <= 57):
+        buffer = buffer + entrada
+        estado = "Q5"
+    else:
+        output(linha, "NMF", buffer)
+        estado = "Q0"
+        buffer = ""
+
+def estadoQ5(caractere, entrada, linha):
+    global buffer, estado
+    if(caractere >= 48 and caractere <= 57):
+        buffer = buffer + entrada
+        estado = "Q5"
+    else:
+        estado = "Q0"
+        output(linha,"NRO",buffer)
+        buffer = ""
+ 
 def estadoQ6(linha):
     global buffer, estado
     estado = "Q0"
@@ -495,6 +539,16 @@ def estadoQ38(linha):
     output(linha,"CAR",buffer)
     estado = "Q0"
     buffer=""
+
+'''def estadoQ39(caractere, entrada, linha):
+    global buffer, estado
+    if(not(caractere == 32 or caractere == 10)):
+        buffer = buffer + entrada
+        estado = "Q39"
+    else:
+        output(linha, "NMF", buffer)
+        estado = "Q0"
+        buffer = "" '''
 
 ###############################################################################################################
 
