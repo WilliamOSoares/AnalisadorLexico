@@ -428,7 +428,7 @@ def estadoQ27(caractere, entrada, linha):
     elif(caractere == 92):
         buffer=buffer+entrada
         estado = "Q28"
-    elif(caractere >=65 and caractere <= 90 or caractere >=97 and caractere <= 122 or caractere == 36 or caractere == 126 or caractere == 58 or caractere == 63 or caractere == 64 or caractere >=94 and caractere <= 96 or caractere >=48 and caractere <= 57):
+    elif(caractere >=32 and caractere <= 126 and not(caractere == 39)):
         buffer=buffer+entrada
         estado = "Q27"
     else:
@@ -444,7 +444,7 @@ def estadoQ28(caractere, entrada, linha):
     elif(caractere == 92):
         buffer=buffer+entrada
         estado = "Q28"
-    elif(caractere >=65 and caractere <= 90 or caractere >=97 and caractere <= 122 or caractere == 36 or caractere == 126 or caractere == 58 or caractere == 63 or caractere == 64 or caractere >=94 and caractere <= 96 or caractere >=48 and caractere <= 57):
+    elif(caractere >=32 and caractere <= 126 and not(caractere == 39)):
         buffer=buffer+entrada
         estado = "Q27"
     else:
@@ -460,7 +460,7 @@ def estadoQ29(caractere, entrada, linha):
     elif(caractere == 92):
         buffer=buffer+entrada
         estado = "Q28"
-    elif(caractere >=65 and caractere <= 90 or caractere >=97 and caractere <= 122 or caractere == 36 or caractere == 126 or caractere == 58 or caractere == 63 or caractere == 64 or caractere >=94 and caractere <= 96 or caractere >=48 and caractere <= 57):
+    elif(caractere >=32 and caractere <= 126 and not(caractere == 39)):
         buffer=buffer+entrada
         estado = "Q27"
     else:
@@ -496,7 +496,7 @@ def estadoQ34(caractere, entrada, linha):
     if(caractere == 92):
         buffer=buffer+entrada
         estado = "Q36"
-    elif(caractere >=65 and caractere <= 90 or caractere >=97 and caractere <= 122 or caractere == 36 or caractere == 126 or caractere == 58 or caractere == 63 or caractere == 64 or caractere >=94 and caractere <= 96 or caractere >=48 and caractere <= 57):
+    elif(caractere >=32 and caractere <= 126 and not(caractere == 39) and not(caractere == 34)):
         buffer=buffer+entrada
         estado = "Q35"
     else:

@@ -1,27 +1,11 @@
-se 1 *+/ 1 = 2 variaveis
-entao 1 /* 1
-a/2*verdadeiro
-^_?
-algoritm % se
-)(){}`[]
-¨& && || | á ç 
-{#
- pipi popo 
-a, é isso daí 
-#}
-se
-"asd\\\""b"
-"
-'
-'a'
-'aa'
-5
-569
-6 5
+exemplo teste; % codigo exemplo
 
-56
-5.668686555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555
-5.8
-9.af =f
-7. 89.6.8
-6 8 
+real f = -3.5;
+
+cadeia msg = "teste
+
+se ( f >= -10) && (f < )
+    escreva("mensagem );
+@
+{# exa869 mi processadores de
+linguagem de programacao
