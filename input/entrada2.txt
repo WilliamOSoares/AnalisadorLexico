@@ -15,8 +15,9 @@ Algoritmo de exemplo
 aa, a2, a_, a_a, a_2
 #}
 algoritmo{
-	a = 1;
-	b = 2;
+	a = verdadeiro;
+	b = 2
+	soma(a,b)
 	soma(a_2, b1_);
 	if(c > 2.2){
 		escreva("Esse numero e maior");

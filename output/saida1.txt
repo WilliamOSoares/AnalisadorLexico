@@ -24,8 +24,20 @@
 07 DEL )
 08 PRE escreva
 08 DEL (
+10 PRE se
+10 DEL (
+10 IDE f
+10 REL >=
+10 ART -
+10 NRO 10
+10 DEL )
+10 LOG &&
+10 DEL (
+10 IDE f
+10 REL <
+10 DEL )
 
 05 CMF "teste
 08 CMF "mensagem );
-09 SIB @
-10 CoMF {# exa869 mi processadores de linguagem de programacao
+10 SIB @
+11 CoMF {# exa869 mi processadores de linguagem de programacao
