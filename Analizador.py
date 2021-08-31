@@ -1,7 +1,7 @@
 #coding: utf-8
 import os
 
-countArq = 1
+countArq = 0
 countLinha = 1
 estado = "Q0"
 buffer = ""
@@ -66,7 +66,7 @@ def PREouIDE(palavra, linha):
     else:
         output(linha,"IDE",buffer)
 
-########################################## Máquina de Estados Finitas ###########################################
+########################################## Máquina de Estados Finitas #############################################################################################################################
 def maqEstados(caractere,entrada, linha):
     global buffer, estado
     
@@ -153,7 +153,9 @@ def maqEstados(caractere,entrada, linha):
     else:
         print("Bugou o estado")
 
-############################################### Estados ######################################################
+############################################### Estados ########################################################################################################################################
+'''O estado 0 é reponsavel por analisar o caractere e fazer a transição para o estado responsavel em
+classifcar o caractere, verificando o decimal equivalenta na tabela ascii'''
 def estadoQ0(caractere,entrada, linha):
     global buffer, estado, space
     buffer=buffer+entrada
@@ -214,6 +216,7 @@ def estadoQ0(caractere,entrada, linha):
             buffer=""
             space = True
 
+# Estado responsavel por classificar em identificador o caractere
 def estadoQ1(caractere,entrada, linha):
     global buffer, estado
     if(caractere >=65 and caractere <= 90 or caractere >=97 and caractere <= 122 or caractere >=48 and caractere <= 57 or caractere ==95):
@@ -225,12 +228,15 @@ def estadoQ1(caractere,entrada, linha):
         PREouIDE(buffer, linha)
         buffer=""
 
+# Estado responsavel por classificar em delimitador o caractere
 def estadoQ2(linha):
     global buffer, estado
     estado = "Q0"
     output(linha, "DEL", buffer)
     buffer=""
 
+# Do estadoQ3 ao estadoQ6 é responsavel por anlisar se é um numero, um numero flutuante ou 
+# se há um erro de numero mal formado
 def estadoQ3(caractere, entrada, linha):
     global buffer, estado
     if(caractere >= 48 and caractere <= 57):
@@ -263,6 +269,7 @@ def estadoQ4(caractere, entrada, linha):
         estado = "Q0"
         buffer = ""
 
+# Estado responsavel por classificar se é um numero flutante os caracteres ou se é um possivel numero mal formado 
 def estadoQ5(caractere, entrada, linha):
     global buffer, estado
     if(caractere >= 48 and caractere <= 57):
@@ -276,6 +283,7 @@ def estadoQ5(caractere, entrada, linha):
         output(linha,"NRO",buffer)
         buffer = ""
 
+# Estado que calssifica que é um numero mal formado os caracteres
 def estadoQ6(caractere, entrada, linha):
     global buffer, estado
     if(caractere >=65 and caractere <= 90 or caractere >=97 and caractere <= 122 or caractere == 46 or caractere >= 48 and caractere <= 57):
@@ -286,10 +294,12 @@ def estadoQ6(caractere, entrada, linha):
         output(linha,"NMF",buffer)
         buffer = ""
 
+# Estado responsavel por analisar se o caractere é um possivel operador logico(||) ou um operador mal formado,
+# caso volte para o estadoQ0 e classificado como operador mal formado
 def estadoQ7(caractere,entrada, linha):
     global buffer, estado
     if(caractere == 124):
-        print("LOG !")
+        print("LOG |")
         buffer=buffer+entrada
         estado = "Q8"
     else:
@@ -298,12 +308,15 @@ def estadoQ7(caractere,entrada, linha):
         output(linha,"OpMF",buffer)
         buffer=""
 
+# Estado que classifica o caractere em operador logico(&&)
 def estadoQ8(linha):
     global buffer, estado
     estado = "Q0"
     output(linha,"LOG",buffer)
     buffer=""
 
+# Estado responsavel por analisar se o caractere é um possivel operador logico(&&) ou um operador mal formado,
+# caso volte para o estadoQ0 e classificado como operador mal formado
 def estadoQ9(caractere, entrada, linha):
     global buffer, estado
     if(caractere == 38):
@@ -316,6 +329,7 @@ def estadoQ9(caractere, entrada, linha):
         output(linha,"OpMF",buffer)
         buffer=""
 
+# Estado que classifica o caractere em operador logico(||)
 def estadoQ10(linha):
     global buffer, estado
     estado = "Q0"
@@ -323,6 +337,8 @@ def estadoQ10(linha):
     output(linha,"LOG",buffer)
     buffer=""
 
+# Estado que analisa se é um operador relacional do tipo > ou < ou = ou se é um possivel 
+# operador relacional do tipo ==
 def estadoQ11(caractere, entrada, linha):
     global buffer, estado
     if(caractere >=60 and caractere <= 62):
@@ -334,12 +350,14 @@ def estadoQ11(caractere, entrada, linha):
         output(linha,"REL",buffer)
         buffer=""
 
+# Estado que classifica em operador relacional (==)
 def estadoQ12(linha):
     global buffer, estado
     estado = "Q0"
     output(linha,"REL",buffer)
     buffer=""
 
+# Estado que analisa se é um operador logico(!) ou um possivel operador relacional(!=)
 def estadoQ13(caractere, entrada, linha):
     global buffer, estado
     if(caractere == 61):
@@ -351,18 +369,21 @@ def estadoQ13(caractere, entrada, linha):
         output(linha,"LOG",buffer)
         buffer=""
 
+# Estado que classifica em operador artimetico (/)
 def estadoQ14(linha):
     global buffer, estado
     estado = "Q0"
     output(linha,"ART",buffer)
     buffer=""
 
+# Estado que classifica em operador artimetico (*)
 def estadoQ15(linha):
     global buffer, estado
     estado = "Q0"
     output(linha,"ART",buffer)
     buffer=""
 
+# Estado que anlisa se é um possivel operador artimetico do tipo -- ou de se é um operador aritimetico -
 def estadoQ16(caractere, entrada, linha):
     global buffer, estado
     if(caractere == 45):
@@ -374,12 +395,14 @@ def estadoQ16(caractere, entrada, linha):
         output(linha,"ART",buffer)
         buffer=""
 
+# Estado que classifica em operador artimetico (--)
 def estadoQ17(linha):
     global buffer, estado
     estado = "Q0"
     output(linha,"ART",buffer)
     buffer=""
 
+# Estado que anlisa se é um possivel operador artimetico do tipo ++ ou de se é um operador aritimetico +
 def estadoQ18(caractere, entrada, linha):
     global buffer, estado
     if(caractere == 43):
@@ -391,19 +414,22 @@ def estadoQ18(caractere, entrada, linha):
         output(linha,"ART",buffer)
         buffer=""
 
+# Estado que classifica em operador artimetico (++)
 def estadoQ19(linha):
     global buffer, estado
     estado = "Q0"
     output(linha,"ART",buffer)
     buffer=""
 
-# Comentário de linha
+# Estado que classifica como comentario de linha e ignora da linha e pula para proxima linha
 def estadoQ20():
     global buffer, estado, skip
     estado = "Q0"
     buffer=""
     skip = True
 
+# Estado que analisa se é um possivel comentario de bloco ou se é um delimitador ({).
+# Do estado Q21 ao Q24 analisa o possivel comentario de bloco
 def estadoQ21(caractere, entrada, linha):
     global buffer, estado, linhaCoMF
     if(caractere == 35):
@@ -452,23 +478,30 @@ def estadoQ23(caractere, entrada):
             buffer=buffer+entrada
             estado = "Q22"
 
+# Estado que classifica em comentario de bloco é ignora todos os caracteres que estão dentro desse comentario
+# bem formado
 def estadoQ24():
     global buffer, estado
     estado = "Q0"
     buffer=""
 
+# Estado que classifica o caracter em simbolo ($ ou ` ou ~ ou ^ ou : ou ? ou @ ou _ ou \ ou #)
 def estadoQ25(linha):
     global buffer, estado
     estado = "Q0"
     output(linha,"SIB",buffer)
     buffer=""
 
+# Estado que classifica em simbolos invalidos todos os caracteres que não pertencem ao intervalo
+# de 32 a 126 da tabela ascii e que não seja final de linha, fim de arquivo, espaço, quebra de texto
+# e tabulação
 def estadoQ26(linha):
     global buffer, estado
     estado = "Q0"
     output(linha, "SII", buffer)
     buffer=""
 
+#Do estadoQ27 ao estadoQ32 analisa a cadeia de caracteres
 def estadoQ27(caractere, entrada, linha):
     global buffer, estado
     if(caractere == 34):
@@ -526,12 +559,15 @@ def estadoQ29(caractere, entrada, linha):
         buffer=buffer+entrada
         estado = "Q31"
 
+# Estado que classifica em cadeia de caractere
 def estadoQ30(linha):
     global buffer, estado
     output(linha,"CAD",buffer)
     estado = "Q0"
     buffer=""
 
+# Estado que classifica em cadeia mal formada caso não encontre o simbolo que finaliza a cadeia 
+# e encontre simbolos invalidos ou apenas não encontre o simbolo que a finaliza
 def estadoQ31(caractere, entrada, linha):
     global buffer, estado
     if(caractere == 34):
@@ -545,12 +581,16 @@ def estadoQ31(caractere, entrada, linha):
         buffer=buffer+entrada
         estado = "Q31"
 
+
+# Estado que classifica em cadeia mal formada caso encontre um simbolo invalido mesmo que encontre 
+# simbolo que finaliza a cadeia de caracteres
 def estadoQ32(linha):
     global buffer, estado
     output(linha,"CMF",buffer)
     estado = "Q0"
     buffer=""
 
+#Do estadoQ33 ao estadoQ39 analisa se eh um caractere simples
 def estadoQ33(caractere, entrada, linha):
     global buffer, estado
     if(caractere == 92):
@@ -606,12 +646,15 @@ def estadoQ36(caractere, entrada, linha):
         buffer=buffer+entrada
         estado = "Q38"
 
+# Estado que classifica em caractere simples
 def estadoQ37(linha):
     global buffer, estado
     output(linha,"CAR",buffer)
     estado = "Q0"
     buffer=""
 
+# Estado que classifica em caractere simples mal formado caso não ache o simbolo que finaliza ou
+# encontre um simbolo invalido e tambem não encontre o simbolo que finaliza o caractere simples
 def estadoQ38(caractere, entrada, linha):
     global buffer, estado
     if(caractere == 39):
@@ -625,14 +668,18 @@ def estadoQ38(caractere, entrada, linha):
         buffer=buffer+entrada
         estado = "Q38"
 
+# Estado que classifica em caractere simples mal formado caso encontre um simbolo invalido e
+# encontre o simbolo que finaliza o caractere simples
 def estadoQ39(linha):
     global buffer, estado
     output(linha,"CaMF",buffer)
     estado = "Q0"
     buffer=""
 
-###############################################################################################################
+##########################################################################################################################################################################################
 
+
+################################################# MAIN ###################################################################################################################################
 #Verifica se a existe a pasta input
 flag = True
 pastas = os.listdir()
@@ -641,8 +688,7 @@ for x in pastas:
 		flag = False
 if(flag):
     print("Pasta input nao encontrada")
-else:
-################################################# MAIN #######################################################    
+else:    
     while(countArq<=100):
         entrada = input()
         if(not(entrada=="")):
