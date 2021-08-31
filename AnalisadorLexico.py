@@ -25,10 +25,6 @@ def input():
 # Escreve uma nova linha no arquivo de saída
 def output(linha, code, buffer):
     global countArq, erros, siglaErro
-    try:
-        os.mkdir("output")        
-    except:
-        print("Diretorio ja existe!")
     f = open("output/saida%d.txt" %countArq,"a")
     if(code == "ERRO"): 
         f.write("\n")
@@ -197,7 +193,7 @@ def estadoQ0(caractere,entrada, linha):
             print ("SII "+ buffer)
             estado = "Q26"
         else:
-            print("Travou no Q0")
+            print("Q0")
             buffer=""
             space = True
 
@@ -648,12 +644,13 @@ def estadoQ39(linha):
     estado = "Q0"
     buffer=""
 
-##########################################################################################################################################################################################
-
-
 ################################################# MAIN ###################################################################################################################################
 #Verifica se a existe a pasta input
 flag = True
+try:
+    os.mkdir("output")        
+except:
+    print("Diretorio ja existe!")
 pastas = os.listdir()
 for x in pastas:
 	if(x == "input"):
