@@ -160,51 +160,36 @@ def estadoQ0(caractere,entrada, linha):
     global buffer, estado, space
     buffer=buffer+entrada
     if(caractere >=65 and caractere <= 90 or caractere >=97 and caractere <= 122):
-        print ("LETRA")
         estado = "Q1" 
     elif(caractere == 44 or caractere == 40 or caractere == 41 or caractere == 46 or caractere == 59 or caractere == 91 or caractere == 93 or caractere == 125):
         estado = "Q2"
     elif(caractere >= 48 and caractere <= 57):
-        print("NRO")
         estado = "Q3"    
     elif(caractere == 124):
-        print("SIB !")
         estado = "Q7"
     elif(caractere == 38):
-        print("SIB &")
         estado = "Q9"
     elif (caractere >=60 and caractere <= 62 ):
-        print("REL" + str(linha))
         estado = "Q11"
     elif(caractere == 33):
-        print ("LOG !")
         estado = "Q13"
     elif(caractere == 47):
-        print("ART barra")
         estado = "Q14"    
     elif(caractere == 42):
-        print("ART *")
         estado = "Q15"
     elif(caractere == 45):
-        print("ART -")
         estado = "Q16"
     elif(caractere == 43):
-        print("ART +")
         estado = "Q18"    
     elif(caractere == 37):
-        print("CoM Linha %")
         estado = "Q20" 
     elif(caractere == 123):
-        print("DEL {")
         estado = "Q21" 
     elif(caractere == 36 or caractere == 92 or caractere == 126 or caractere == 58 or caractere == 63 or caractere == 64 or caractere >=94 and caractere <= 96 or caractere == 35):
-        print("SIB")
         estado = "Q25"
     elif(caractere == 34):
-        print("Cadeia de caractere")
         estado = "Q27" 
     elif(caractere == 39):
-        print ("CAR INIT")
         estado = "Q33"    
     else:
         if(not(caractere == 10 or caractere == 194 or caractere == 195 or caractere == 32 or caractere == 3 or caractere ==9 or caractere ==11)):
@@ -220,7 +205,6 @@ def estadoQ0(caractere,entrada, linha):
 def estadoQ1(caractere,entrada, linha):
     global buffer, estado
     if(caractere >=65 and caractere <= 90 or caractere >=97 and caractere <= 122 or caractere >=48 and caractere <= 57 or caractere ==95):
-        print("IDE ou PRE")
         buffer=buffer+entrada
         estado = "Q1"
     else:
@@ -240,15 +224,12 @@ def estadoQ2(linha):
 def estadoQ3(caractere, entrada, linha):
     global buffer, estado
     if(caractere >= 48 and caractere <= 57):
-        print("NRO" + buffer)
         buffer = buffer + entrada
         estado = "Q3"
     elif(caractere == 46):
-        print("Float" + buffer)
         buffer = buffer + entrada
         estado = "Q4"
     elif(caractere >=65 and caractere <= 90 or caractere >=97 and caractere <= 122):
-        print("Erro")
         buffer = buffer + entrada
         estado = "Q6"
     else:
@@ -299,12 +280,10 @@ def estadoQ6(caractere, entrada, linha):
 def estadoQ7(caractere,entrada, linha):
     global buffer, estado
     if(caractere == 124):
-        print("LOG |")
         buffer=buffer+entrada
         estado = "Q8"
     else:
         estado = "Q0"
-        print("OpMF |")
         output(linha,"OpMF",buffer)
         buffer=""
 
@@ -320,12 +299,10 @@ def estadoQ8(linha):
 def estadoQ9(caractere, entrada, linha):
     global buffer, estado
     if(caractere == 38):
-        print ("SIB &")
         buffer = buffer+entrada
         estado = "Q10"
     else:
         estado = "Q0"
-        print("OpMF &")
         output(linha,"OpMF",buffer)
         buffer=""
 
@@ -333,7 +310,6 @@ def estadoQ9(caractere, entrada, linha):
 def estadoQ10(linha):
     global buffer, estado
     estado = "Q0"
-    print("LOG &&")
     output(linha,"LOG",buffer)
     buffer=""
 
@@ -342,7 +318,6 @@ def estadoQ10(linha):
 def estadoQ11(caractere, entrada, linha):
     global buffer, estado
     if(caractere >=60 and caractere <= 62):
-        print("REL" + str(linha))
         buffer=buffer+entrada
         estado = "Q12"
     else:
@@ -361,7 +336,6 @@ def estadoQ12(linha):
 def estadoQ13(caractere, entrada, linha):
     global buffer, estado
     if(caractere == 61):
-        print("LOG !")
         buffer=buffer+entrada
         estado = "Q12"
     else:
@@ -387,7 +361,6 @@ def estadoQ15(linha):
 def estadoQ16(caractere, entrada, linha):
     global buffer, estado
     if(caractere == 45):
-        print("ART -")
         buffer=buffer+entrada
         estado = "Q17"
     else:
@@ -406,7 +379,6 @@ def estadoQ17(linha):
 def estadoQ18(caractere, entrada, linha):
     global buffer, estado
     if(caractere == 43):
-        print("ART +")
         buffer=buffer+entrada
         estado = "Q19"
     else:
