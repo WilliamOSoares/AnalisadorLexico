@@ -682,7 +682,7 @@ else:
                         break
                 countLinha+=1
             output(0,"ERRO","")
-        entrada.close
+            entrada.close()
         countArq+=1
         countLinha=1
         buffer=""
