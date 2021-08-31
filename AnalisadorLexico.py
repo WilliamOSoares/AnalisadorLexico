@@ -1,24 +1,28 @@
 #coding: utf-8
 import os
+import sys
+import shutil
 
-countArq = 0
+countArq = 1
 countLinha = 1
 estado = "Q0"
 buffer = ""
 linhaCoMF = 1
-space = False #O que acontece se não sair do Q0
+space = False #Caso pegue o espaço ou Tab 
 skip = False #Usado para pular linha
+endRead = False #Acaba a leitura de arquivos
 pre = ["algoritmo","variaveis","constantes","registro","funcao","retorno","vazio","se","senao","enquanto","para","leia","escreva","inteiro","real","booleano","char","cadeia","verdadeiro","falso"]
 erros = []
 siglaErro = ["SIB","SII","CMF","NMF","CaMF","CoMF","OpMF"]
 
 # Abertura do arquivo
 def input():
-    global countArq
+    global countArq, endRead
     f=""
     try:
         f = open ("input/entrada%d.txt" %countArq, "r")        
     except: 
+        endRead = True
         print("Arquivo nao encontrado!")        
     return f
 
@@ -193,7 +197,6 @@ def estadoQ0(caractere,entrada, linha):
             print ("SII "+ buffer)
             estado = "Q26"
         else:
-            print("Q0")
             buffer=""
             space = True
 
@@ -648,8 +651,9 @@ def estadoQ39(linha):
 #Verifica se a existe a pasta input
 flag = True
 try:
+    shutil.rmtree("output")
     os.mkdir("output")        
-except:
+except:    
     print("Diretorio ja existe!")
 pastas = os.listdir()
 for x in pastas:
@@ -658,7 +662,7 @@ for x in pastas:
 if(flag):
     print("Pasta input nao encontrada")
 else:    
-    while(countArq<=100):
+    while(not(endRead)):
         entrada = input()
         if(not(entrada=="")):
             while 1:

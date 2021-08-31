@@ -10,34 +10,34 @@
 05 PRE cadeia
 05 IDE msg
 05 REL =
-07 PRE se
+06 PRE se
+06 DEL (
+06 IDE f
+06 REL >=
+06 ART -
+06 NRO 10
+06 DEL )
+06 LOG &&
+06 DEL (
+06 IDE f
+06 REL <
+06 DEL )
+07 PRE escreva
 07 DEL (
-07 IDE f
-07 REL >=
-07 ART -
-07 NRO 10
-07 DEL )
-07 LOG &&
-07 DEL (
-07 IDE f
-07 REL <
-07 DEL )
-08 PRE escreva
-08 DEL (
-10 PRE se
-10 DEL (
-10 IDE f
-10 REL >=
-10 ART -
-10 NRO 10
-10 DEL )
-10 LOG &&
-10 DEL (
-10 IDE f
-10 REL <
-10 DEL )
+09 PRE se
+09 DEL (
+09 IDE f
+09 REL >=
+09 ART -
+09 NRO 10
+09 DEL )
+09 LOG &&
+09 DEL (
+09 IDE f
+09 REL <
+09 DEL )
 
 05 CMF "teste
-08 CMF "mensagem );
-10 SIB @
-11 CoMF {# exa869 mi processadores de linguagem de programacao
+07 CMF "mensagem );
+09 SIB @
+10 CoMF {# exa869 mi processadores de linguagem de programacao
