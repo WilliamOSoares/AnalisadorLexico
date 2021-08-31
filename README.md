@@ -6,6 +6,9 @@ Primeiro problema do MI de Algoritmos
 - Ter criado a pasta com o nome "input" criada no mesmo repositório do arquivo .py;
 - Nomear os arquivos de entrada com o nome "entradaX.txt" onde o X será números inteiros. Exemplo: "entrada1.txt"
 
+## Tabela ASCII usada como base para o desenvolvimento
+![ASCII.jpg](https://github.com/WilliamOSoares/AnalisadorLexico/blob/main/ASCII.jpg)
+
 ## Diagrama de Transição de estados
 ![Analisador Lexico Diagrama Estados.jpeg](https://github.com/WilliamOSoares/AnalisadorLexico/blob/main/Analisador%20Lexico%20Diagrama%20Estados.jpeg)
 
