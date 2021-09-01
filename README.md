@@ -10,7 +10,7 @@ Primeiro problema do MI de Algoritmos
 ## Tabela da Estrutura Léxica
 ![Tabela da estrutura lexica.png](https://github.com/WilliamOSoares/AnalisadorLexico/blob/main/Imagens/Tabela%20da%20estrutura%20lexica.png)
 
-- Na cadeia de caracteres e no caractere, o \ e ' e " serão aceitos se tiver o \ antes destes caracteres.
+- Na cadeia de caracteres e no caractere, o \, ', ", 0, a, b, t, f, n e r serão aceitos se tiver o \ antes destes caracteres.
 
 ## Tabela ASCII usada como base para o desenvolvimento
 ![ASCII.jpg](https://github.com/WilliamOSoares/AnalisadorLexico/blob/main/Imagens/ASCII.jpg)
