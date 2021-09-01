@@ -188,8 +188,6 @@ def estadoQ0(caractere,entrada, linha):
         estado = "Q32"    
     else:
         if(not(caractere == 10 or caractere == 194 or caractere == 195 or caractere == 32 or caractere == 3 or caractere ==9 or caractere ==11)):
-            print (caractere)
-            print ("SII "+ buffer)
             estado = "Q26"
         else:
             buffer=""
@@ -604,7 +602,7 @@ def estadoQ37(linha):
     buffer=""
 
 ################################################# MAIN ###################################################################################################################################
-#Verifica se a existe a pasta input
+# Verifica se a existe a pasta input
 flag = True
 try:
     shutil.rmtree("output")
