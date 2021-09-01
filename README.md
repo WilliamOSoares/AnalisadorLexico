@@ -16,7 +16,7 @@ Primeiro problema do MI de Algoritmos
 ![ASCII.jpg](https://github.com/WilliamOSoares/AnalisadorLexico/blob/main/Imagens/ASCII.jpg)
 
 ## Diagrama de Transição de estados
-![Analisador Lexico Diagrama Estados.jpeg](https://github.com/WilliamOSoares/AnalisadorLexico/blob/main/Imagens/Analisador%20Lexico%20Diagrama%20Estados.jpeg)
+![Analisador Lexico Diagrama Estados.jpeg](https://github.com/WilliamOSoares/AnalisadorLexico/blob/beta/Imagens/Analisador%20Lexico%20Diagrama%20Estados.jpeg)
 
 - Se ocorrer a entrada de um símbolo que não corresponde a regra da transição de estados, o estado terá uma saída e retornará ao estado inicial para analisar o símbolo.
 
