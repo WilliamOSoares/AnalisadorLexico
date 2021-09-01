@@ -48,6 +48,31 @@
 18 CAD "\\n"
 19 IDE s
 19 REL =
+19 CAR '\n'
+20 IDE t
+20 REL =
+20 CAR '\0'
+21 IDE u
+21 REL =
+21 CAR '\r'
+22 IDE v
+22 REL =
+22 CAR '\t'
+23 IDE w
+23 REL =
+23 CAR '\a'
+24 IDE x
+24 REL =
+24 CAR '\b'
+25 IDE y
+25 REL =
+25 CAR '\f'
+26 CAR ' '
+27 CAD " "
+28 CAD ""
+28 CAD ""
+30 CAD " "
+30 CAD " "
 
 04 CMF "\"
 05 CMF "'"
@@ -56,4 +81,6 @@
 11 CaMF '"'
 12 CaMF '\'
 14 CMF "\\\\\"
-19 CaMF '\n'
+29 CaMF ''
+31 CaMF '''
+32 CaMF '"'

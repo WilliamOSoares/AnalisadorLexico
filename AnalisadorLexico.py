@@ -560,7 +560,7 @@ def estadoQ33(caractere, entrada, linha):
 
 def estadoQ34(caractere, entrada, linha):
     global buffer, estado
-    if(caractere == 39 or caractere == 34 or caractere == 92):
+    if(caractere == 39 or caractere == 34 or caractere == 92 or caractere == 48 or caractere == 97 or caractere == 98 or caractere == 116 or caractere == 102 or caractere == 110 or caractere == 114):
         buffer=buffer+entrada
         estado = "Q33"
     elif(caractere == 10 or caractere == 3):
