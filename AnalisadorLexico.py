@@ -1,6 +1,5 @@
 #coding: utf-8
 import os
-import sys
 import shutil
 
 countArq = 1
@@ -129,27 +128,23 @@ def maqEstados(caractere,entrada, linha):
     elif(estado == "Q28"):
         estadoQ28(caractere, entrada, linha)   
     elif(estado == "Q29"):
-        estadoQ29(caractere, entrada, linha)   
+        estadoQ29(linha)   
     elif(estado == "Q30"):
-        estadoQ30(linha)  
+        estadoQ30(caractere, entrada, linha)  
     elif(estado == "Q31"):
-        estadoQ31(caractere, entrada, linha) 
+        estadoQ31(linha) 
     elif(estado == "Q32"):
-        estadoQ32(linha)
+        estadoQ32(caractere, entrada, linha)
     elif(estado == "Q33"):
         estadoQ33(caractere, entrada, linha)
     elif(estado == "Q34"):
         estadoQ34(caractere, entrada, linha)   
     elif(estado == "Q35"):
-        estadoQ35(caractere, entrada, linha)   
+        estadoQ35(linha)   
     elif(estado == "Q36"):
         estadoQ36(caractere, entrada, linha)   
     elif(estado == "Q37"):
         estadoQ37(linha)   
-    elif(estado == "Q38"):
-        estadoQ38(caractere, entrada, linha)
-    elif(estado == "Q39"):
-        estadoQ39(linha) 
     else:
         print("Bugou o estado")
 
@@ -190,7 +185,7 @@ def estadoQ0(caractere,entrada, linha):
     elif(caractere == 34):
         estado = "Q27" 
     elif(caractere == 39):
-        estado = "Q33"    
+        estado = "Q32"    
     else:
         if(not(caractere == 10 or caractere == 194 or caractere == 195 or caractere == 32 or caractere == 3 or caractere ==9 or caractere ==11)):
             print (caractere)
@@ -472,27 +467,8 @@ def estadoQ26(linha):
     output(linha, "SII", buffer)
     buffer=""
 
-#Do estadoQ27 ao estadoQ32 analisa a cadeia de caracteres
+# Do estadoQ27 ao estadoQ31 analisa a cadeia de caracteres
 def estadoQ27(caractere, entrada, linha):
-    global buffer, estado
-    if(caractere == 34):
-        buffer=buffer+entrada
-        estado = "Q30"
-    elif(caractere == 92):
-        buffer=buffer+entrada
-        estado = "Q28"
-    elif(caractere >=32 and caractere <= 126 and not(caractere == 39)):
-        buffer=buffer+entrada
-        estado = "Q27"
-    elif(caractere == 10 or caractere == 3):
-        estado = "Q0"
-        output(linha,"CMF",buffer)
-        buffer=""
-    else:
-        buffer=buffer+entrada
-        estado = "Q31"
-
-def estadoQ28(caractere, entrada, linha):
     global buffer, estado
     if(caractere == 34):
         buffer=buffer+entrada
@@ -509,17 +485,11 @@ def estadoQ28(caractere, entrada, linha):
         buffer=""
     else:
         buffer=buffer+entrada
-        estado = "Q31"
-
-def estadoQ29(caractere, entrada, linha):
-    global buffer, estado
-    if(caractere == 34):
-        buffer=buffer+entrada
         estado = "Q30"
-    elif(caractere == 92):
-        buffer=buffer+entrada
-        estado = "Q28"
-    elif(caractere >=32 and caractere <= 126 and not(caractere == 39)):
+
+def estadoQ28(caractere, entrada, linha):
+    global buffer, estado
+    if(caractere >=32 and caractere <= 126):
         buffer=buffer+entrada
         estado = "Q27"
     elif(caractere == 10 or caractere == 3):
@@ -531,7 +501,7 @@ def estadoQ29(caractere, entrada, linha):
         estado = "Q31"
 
 # Estado que classifica em cadeia de caractere
-def estadoQ30(linha):
+def estadoQ29(linha):
     global buffer, estado
     output(linha,"CAD",buffer)
     estado = "Q0"
@@ -539,11 +509,11 @@ def estadoQ30(linha):
 
 # Estado que classifica em cadeia mal formada caso não encontre o simbolo que finaliza a cadeia 
 # e encontre simbolos invalidos ou apenas não encontre o simbolo que a finaliza
-def estadoQ31(caractere, entrada, linha):
+def estadoQ30(caractere, entrada, linha):
     global buffer, estado
     if(caractere == 34):
         buffer=buffer+entrada
-        estado = "Q32"
+        estado = "Q31"
     elif(caractere == 10 or caractere == 3):
         estado = "Q0"
         output(linha,"CMF",buffer)
@@ -552,22 +522,34 @@ def estadoQ31(caractere, entrada, linha):
         buffer=buffer+entrada
         estado = "Q31"
 
-
 # Estado que classifica em cadeia mal formada caso encontre um simbolo invalido mesmo que encontre 
 # simbolo que finaliza a cadeia de caracteres
-def estadoQ32(linha):
+def estadoQ31(linha):
     global buffer, estado
     output(linha,"CMF",buffer)
     estado = "Q0"
     buffer=""
 
-#Do estadoQ33 ao estadoQ39 analisa se eh um caractere simples
-def estadoQ33(caractere, entrada, linha):
+# Do estadoQ32 ao estadoQ37 analisa se eh um caractere simples
+def estadoQ32(caractere, entrada, linha):
     global buffer, estado
     if(caractere == 92):
         buffer=buffer+entrada
         estado = "Q34"
     elif(caractere >=32 and caractere <= 126 and not(caractere == 39) and not(caractere == 34)):
+        buffer=buffer+entrada
+        estado = "Q33"
+    elif(caractere == 10 or caractere == 3):
+        estado = "Q0"
+        output(linha,"CaMF",buffer)
+        buffer=""
+    else:
+        buffer=buffer+entrada
+        estado = "Q36"
+
+def estadoQ33(caractere, entrada, linha):
+    global buffer, estado
+    if(caractere == 39):
         buffer=buffer+entrada
         estado = "Q35"
     elif(caractere == 10 or caractere == 3):
@@ -576,34 +558,30 @@ def estadoQ33(caractere, entrada, linha):
         buffer=""
     else:
         buffer=buffer+entrada
-        estado = "Q38"
+        estado = "Q36"
 
 def estadoQ34(caractere, entrada, linha):
     global buffer, estado
-    if(caractere == 39):
+    if(caractere == 39 or caractere == 34 or caractere == 92):
+        buffer=buffer+entrada
+        estado = "Q33"
+    elif(caractere == 10 or caractere == 3):
+        estado = "Q0"
+        output(linha,"CaMF",buffer)
+        buffer=""
+    else:
         buffer=buffer+entrada
         estado = "Q36"
-    elif(caractere == 10 or caractere == 3):
-        estado = "Q0"
-        output(linha,"CaMF",buffer)
-        buffer=""
-    else:
-        buffer=buffer+entrada
-        estado = "Q38"
 
-def estadoQ35(caractere, entrada, linha):
+# Estado que classifica em caractere simples
+def estadoQ35(linha):
     global buffer, estado
-    if(caractere == 39):
-        buffer=buffer+entrada
-        estado = "Q37"
-    elif(caractere == 10 or caractere == 3):
-        estado = "Q0"
-        output(linha,"CaMF",buffer)
-        buffer=""
-    else:
-        buffer=buffer+entrada
-        estado = "Q38"
+    output(linha,"CAR",buffer)
+    estado = "Q0"
+    buffer=""
 
+# Estado que classifica em caractere simples mal formado caso não ache o simbolo que finaliza ou
+# encontre um simbolo invalido e tambem não encontre o simbolo que finaliza o caractere simples
 def estadoQ36(caractere, entrada, linha):
     global buffer, estado
     if(caractere == 39):
@@ -615,33 +593,11 @@ def estadoQ36(caractere, entrada, linha):
         buffer=""
     else:
         buffer=buffer+entrada
-        estado = "Q38"
-
-# Estado que classifica em caractere simples
-def estadoQ37(linha):
-    global buffer, estado
-    output(linha,"CAR",buffer)
-    estado = "Q0"
-    buffer=""
-
-# Estado que classifica em caractere simples mal formado caso não ache o simbolo que finaliza ou
-# encontre um simbolo invalido e tambem não encontre o simbolo que finaliza o caractere simples
-def estadoQ38(caractere, entrada, linha):
-    global buffer, estado
-    if(caractere == 39):
-        buffer=buffer+entrada
-        estado = "Q39"
-    elif(caractere == 10 or caractere == 3):
-        estado = "Q0"
-        output(linha,"CaMF",buffer)
-        buffer=""
-    else:
-        buffer=buffer+entrada
-        estado = "Q38"
+        estado = "Q36"
 
 # Estado que classifica em caractere simples mal formado caso encontre um simbolo invalido e
 # encontre o simbolo que finaliza o caractere simples
-def estadoQ39(linha):
+def estadoQ37(linha):
     global buffer, estado
     output(linha,"CaMF",buffer)
     estado = "Q0"
@@ -654,7 +610,7 @@ try:
     shutil.rmtree("output")
     os.mkdir("output")        
 except:    
-    print("Diretorio ja existe!")
+    print("Erro na manipulação da pasta output!")
 pastas = os.listdir()
 for x in pastas:
 	if(x == "input"):

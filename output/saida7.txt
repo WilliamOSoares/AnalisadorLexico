@@ -36,9 +36,6 @@
 15 DEL )
 16 PRE escreva
 16 DEL (
-16 ART +
-16 IDE bmi
-16 DEL )
 19 PRE se
 19 DEL (
 19 IDE bmi
@@ -87,7 +84,7 @@
 25 DEL {
 26 PRE escreva
 26 DEL (
-26 DEL )
+26 IDE vel
 27 DEL }
 27 PRE senao
 27 PRE se
@@ -130,10 +127,15 @@
 33 DEL {
 34 PRE escreva
 34 DEL (
+34 IDE rbida
 34 DEL )
 35 DEL }
 
-16 CMF "Seu IMC é: "
-26 CMF "Saudável"
+16 CMF "Seu IMC é
+16 SIB :
+16 CMF " + bmi)
+26 CMF "Saudá
+26 CMF ")
 28 CMF "Sobrepeso)
-34 CMF "Obesidade Grau III (mórbida)"
+34 CMF "Obesidade Grau III (mó
+34 CMF ")
