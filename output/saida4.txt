@@ -27,7 +27,6 @@
 07 IDE b
 07 REL =
 07 ART -
-08 IDE a_
 08 REL =
 08 DEL .
 08 NRO 8
@@ -40,5 +39,5 @@
 07 NMF 3.4.4.4
 07 SIB $
 07 NMF 4.
-08 SIB $
+08 SII a_$
 08 NMF 858.8aaaa

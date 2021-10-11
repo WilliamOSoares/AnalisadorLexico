@@ -145,6 +145,8 @@ def maqEstados(caractere,entrada, linha):
         estadoQ36(caractere, entrada, linha)   
     elif(estado == "Q37"):
         estadoQ37(linha)   
+    elif(estado == "Q38"):
+        estadoQ38(caractere, entrada, linha) 
     else:
         print("Bugou o estado")
 
@@ -199,6 +201,9 @@ def estadoQ1(caractere,entrada, linha):
     if(caractere >=65 and caractere <= 90 or caractere >=97 and caractere <= 122 or caractere >=48 and caractere <= 57 or caractere ==95):
         buffer=buffer+entrada
         estado = "Q1"
+    elif(caractere == 35 or caractere == 36 or caractere == 58 or caractere == 63 or caractere == 64 or caractere == 92 or caractere == 94 or caractere == 96 or caractere == 126):
+        buffer=buffer+entrada
+        estado = "Q38"
     else:
         estado = "Q0"
         PREouIDE(buffer, linha)
@@ -481,6 +486,9 @@ def estadoQ27(caractere, entrada, linha):
         estado = "Q0"
         output(linha,"CMF",buffer)
         buffer=""
+    elif(caractere == 39):
+        buffer=buffer+entrada
+        estado = "Q30"
     else:
         buffer=buffer+entrada
         estado = "Q30"
@@ -494,9 +502,12 @@ def estadoQ28(caractere, entrada, linha):
         estado = "Q0"
         output(linha,"CMF",buffer)
         buffer=""
+    elif(caractere == 39):
+        buffer=buffer+entrada
+        estado = "Q30"
     else:
         buffer=buffer+entrada
-        estado = "Q31"
+        estado = "Q30"
 
 # Estado que classifica em cadeia de caractere
 def estadoQ29(linha):
@@ -518,7 +529,7 @@ def estadoQ30(caractere, entrada, linha):
         buffer=""
     else:
         buffer=buffer+entrada
-        estado = "Q31"
+        estado = "Q30"
 
 # Estado que classifica em cadeia mal formada caso encontre um simbolo invalido mesmo que encontre 
 # simbolo que finaliza a cadeia de caracteres
@@ -601,7 +612,20 @@ def estadoQ37(linha):
     estado = "Q0"
     buffer=""
 
-################################################# MAIN ###################################################################################################################################
+##################### NOVOS ESTADOS ATUALIZADOS NA ETAPA DA IMPLEMENTAÇÃO DA SINTATICA ###################
+
+# Estado responsavel por classificar em identificador o caractere
+def estadoQ38(caractere,entrada, linha):
+    global buffer, estado
+    if(caractere >=65 and caractere <= 90 or caractere >=97 and caractere <= 122 or caractere >=48 and caractere <= 57 or caractere ==95 or caractere == 35 or caractere == 36 or caractere == 58 or caractere == 63 or caractere == 64 or caractere == 92 or caractere == 94 or caractere == 96 or caractere == 126):
+        buffer=buffer+entrada
+        estado = "Q38"
+    else:
+        output(linha,"SII",buffer)
+        estado = "Q0"
+        buffer=""
+
+################################################# MAIN ####################################################
 # Verifica se a existe a pasta input
 flag = True
 try:

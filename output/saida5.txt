@@ -1,8 +1,7 @@
 02 PRE cadeia
 02 IDE a
 02 REL =
-02 IDE isso
-02 IDE mesmo
+02 DEL ;
 05 IDE Este
 05 IDE o
 05 IDE comentario
@@ -28,8 +27,7 @@
 22 DEL (
 22 DEL )
 
-02 CMF "é
-02 CMF ";
+02 CMF "é isso mesmo"
 05 SII �
 06 SIB #
 10 CMF " opa, beleza?
