@@ -1,15 +1,13 @@
-exemplo teste; % codigo exemplo
+% Teste 1 - identificadores
+variaveis
+{
+    inteiro var_int;
+    real r_e_a_l;
+    booleano b00lean;
+    cadeia str1_ng;
 
-real f = -3.5;
-cadeia f$a# "nome pro'prio "
-cadeia msg = "teste
-se ( f >= -10) && (f < )
-    escreva("mensagem );
-%
-@ se ( f >= -10) && (f < )
-{###################### 
-
-exa869 mi processadores de
-
-linguagem de programacao 
-######################}
+    inteiro var_int!;
+    real _r_e_a_l;
+    booleano b@@lean;
+    cadeia str!_ng;
+}

@@ -1,28 +1,18 @@
-inteiro a = 10
-outro_inteiro b = 5
+	% Programa com varios erros
+	% tabulacao no inicio de cada linha (nao eh erro)
 
-escreva(a+b)
-escreva(a-b)
-escreva(a/b)
-escreva(a*b)
-escreva(a++)
-escreva(b--)
-
-se ( a > b && a > 10 ) {
-    escreva("aaaa")
-}
-se ( a < b & a < 10 ) {
-    escreva("bbbb")
-}
-se ( a >= b || a >= 10 ) {
-    escreva("cccc")
-}
-se ( a <= b | a <= 10 ) {
-    escreva("dddd")
-}
-se ( a == b ) {
-    escreva("eeee")
-}
-se ( a = b ) {
-    escreva("ffff")
-}
+	variaveis
+	{
+		inteiro a?; % identificador invalido
+	}
+	algoritmo
+	{
+		a = %; 
+		a = 2.2.2; % numero invalido ou numero, delimitador, numero 
+					
+		se (?) 
+		{
+			x =? a; % operador mal formado
+		}
+		{# Comentario nao finalizado;
+	}

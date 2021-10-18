@@ -1,28 +1,23 @@
-Variaveis{
-    inteiro a_2;
-	inteiro b1_;
-	real c;
-	}
+% Teste 2 - Numeros 
 
-% funcao de somar
-funcao vazio soma (inteiro e, inteiro f){
-	c = e + f;
-	escreva(c);
-	}
+variaveis
+{
+	inteiro int;
+	inteiro a;
+	real numero_real;
+	real numero_real2;
+}
 
-{#
-Algoritmo de exemplo
-aa, a2, a_, a_a, a_2
-#}
-algoritmo{
-	a = verdadeiro;
-	b = 2
-	soma(a,b)
-	soma(a_2, b1_);
-	if(c > 2.2){
-		escreva("Esse numero e maior");
-	}
-	else {
-		escreva("Esse numero e menor");
-	}
+algoritmo
+{
+
+	int = 1;
+    a = 1.1 ;
+    numero_real = 1.123456789
+    numero_real2 = 123456789.1
+
+    inteiro = .1;
+    a = 1.1_ ;
+    numero_real = 1.123456.789
+    numero_real2 = 1234@56789.1
 }

@@ -1,8 +1,1 @@
-inteir a_;
-real _b = -3.4;
-
-se(a_ & _b);
-    escrevva("Ta certo, confia")
-sena o(a_ | -b)
-    _b = -3.4.4.4$4.
-    a_$ = 858.8aaaa .8
+algoritmo, variaveis, constantes, registro, funcao, retorno, vazio, se, senao, enquanto, para, leia, escreva, inteiro, real, booleano, char, cadeia, verdadeiro, falso 

@@ -1,22 +1,30 @@
-variaveis {
-    inteiro i 'c;
-    i + 1 - 3;
-    i++;
-    real r = 3.53. - 4;
-    var r --;
-}
+% Programa sem erros - Testando tudo que a linguagem aceita
 
-constantes {
-    real pi_3_15 = 3.14;
-}
+% Palavras reservadas
+algoritmo, variaveis, constantes, registro, funcao, retorno, vazio, se, senao, enquanto, para, leia, escreva, inteiro, real, booleano, char, cadeia, verdadeiro, falso
 
-funcao algoritmo () {
-    inteiro var = 3*3;
-    float num = 4/5;
-    % teste de condicional
-    se (pi == r || pi > i) {
-        escreva(" Ola Mundo!);
-    } senao {
-        escreva(" Hello World? ");
-    }
-}
+% Identificadores validos
+
+num1 todos_tutores soma q123
+
+% Numeros validos
+
+123 1.2 23.987
+
+% Cadeias de caracteres
+
+"texto correto" "@#$:^&*"
+
+% Operadores
+
++ - * / ++ -- == != > >= < <= = && || !
+
+% Delimitadores
+
+; , ( ) { } [ ] .
+
+% Comentarios validos
+
+{# isto é um comentário
+de bloco #}
+% isto é um comentário de linha
